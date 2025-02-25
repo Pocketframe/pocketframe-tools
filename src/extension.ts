@@ -33,7 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
         completions.push(redirectCompletion);
 
         const csrfCompletion = new vscode.CompletionItem('csrf_token', vscode.CompletionItemKind.Function);
-        csrfCompletion.insertText = new vscode.SnippetString("csrf_token()");
+        csrfCompletion.insertText = new vscode.SnippetString("csrf_token");
         csrfCompletion.documentation = new vscode.MarkdownString('Generate a CSRF token.');
         completions.push(csrfCompletion);
 
@@ -64,7 +64,7 @@ export function activate(context: vscode.ExtensionContext) {
   const serveCmd = vscode.commands.registerCommand('pocketframeTools.serve', () => {
     vscode.window.showInformationMessage('Starting Pocketframe development server...');
     // Adjust the command as necessary for your framework.
-    const command = 'php -S localhost:8000 -t public index.php';
+    const command = 'php -S localhost:8000 -t . index.php';
     exec(command, (error, stdout, stderr) => {
       if (error) {
         vscode.window.showErrorMessage(`Error starting server: ${error.message}`);
