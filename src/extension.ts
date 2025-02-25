@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { exec } from 'child_process';
 
 export function activate(context: vscode.ExtensionContext) {
-  // Register a completion provider for Pocketframe files (.pxt.php)
+  // Register a completion provider for Pocketframe files (.view.php)
   const completionProvider = vscode.languages.registerCompletionItemProvider(
     'pocketframe',
     {

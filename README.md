@@ -2,7 +2,7 @@
 
 Pocketframe Tools is a Visual Studio Code extension that provides advanced language support for the entire Pocketframe framework. It offers:
 
-- **Syntax Highlighting**: For Pocketframe templating files (`.pxt.php`) and framework-specific syntax.
+- **Syntax Highlighting**: For Pocketframe templating files (`.view.php`) and framework-specific syntax.
 - **Code Completion & Snippets**: Fast insertion of common templating and helper function snippets.
 - **Go-To Definition**: Basic navigation support (customize as needed).
 - **Commands**: Framework-specific commands like "Serve" to run the development server.
@@ -10,7 +10,7 @@ Pocketframe Tools is a Visual Studio Code extension that provides advanced langu
 
 ## Features
 
-- **File Extension**: Recognizes files ending with `.pxt.php`.
+- **File Extension**: Recognizes files ending with `.view.php`.
 - **Syntax Highlighting**: Custom TextMate grammar for Pocketframe templates.
 - **IntelliSense**: Provides auto-completion for control structures, helpers, and common snippets.
 - **Go-To Definition**: Navigate to definitions (basic implementation).
