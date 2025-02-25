@@ -2,7 +2,7 @@
   "name": "pocketframe-tools",
   "displayName": "Pocketframe Tools",
   "description": "Provides syntax highlighting, code completion, go-to definition, snippets, and commands for the entire Pocketframe framework (including Pocketframe templating with .view.php files).",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "WilliamAsaba",
   "engines": {
     "vscode": "^1.80.0"
@@ -16,8 +16,8 @@
 },
 "homepage": "https://github.com/Pocketframe/pocketframe-tools#readme",
   "categories": [
-    "Other",
-    "Programming Languages"
+    "Programming Languages",
+    "Linters"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -42,6 +42,20 @@
         "path": "./snippets/pocketframe.code-snippets.json"
       }
     ],
+    "iconThemes": [
+    {
+      "id": "pocketframe-icons",
+      "label": "Pocketframe Icons",
+      "path": "./icons/pocketframe-icons.json"
+    }
+  ],
+    "keybindings": [
+      {
+        "command": "pocketframe.gotoDefinition",
+        "key": "ctrl+shift+g",
+        "when": "editorLangId == 'pocketframe'"
+      }
+    ],
     "commands": [
       {
         "command": "pocketframeTools.showVersion",
@@ -50,6 +64,10 @@
       {
         "command": "pocketframeTools.serve",
         "title": "Pocketframe Tools: Serve Framework"
+      },
+      {
+        "command": "pocketframe.gotoDefinition",
+        "title": "Go to Definition"
       }
     ]
   },
