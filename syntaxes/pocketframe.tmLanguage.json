@@ -3,25 +3,74 @@
   "name": "Pocketframe Template",
   "patterns": [
     {
+      "include": "text.html.basic"
+    },
+    {
+      "name": "comment.line.pocketframe",
+      "begin": "<%--",
+      "end": "--%>",
+      "patterns": [
+        {
+          "name": "keyword.important.comment.pocketframe",
+          "match": "TODO|FIXME|NOTE|BUG|HACK"
+        }
+      ]
+    },
+    {
+      "name": "comment.block.pocketframe",
+      "begin": "<#\\--",
+      "end": "\\--#>",
+      "patterns": [
+        {
+          "include": "#commentContent"
+        }
+      ]
+    },
+    {
       "name": "keyword.control.pocketframe",
-      "match": "<%\\s*(if|else|endif|foreach|endforeach|block|endblock|extends|yield|method|csrf_token)\\b"
+      "match": "<%\\s*(if|else|endif|foreach|endforeach|block|endblock|extends|yield|method|csrf_token|endblock)\\b"
+    },
+    {
+      "name": "meta.embedded.php.pocketframe",
+      "begin": "<%=",
+      "end": "%>",
+      "contentName": "source.php"
+    },
+    {
+      "name": "meta.embedded.php.raw.pocketframe",
+      "begin": "<%!",
+      "end": "%>",
+      "contentName": "source.php"
     },
     {
       "name": "meta.template.pocketframe",
-      "begin": "<%[=!]?\\s*",
+      "begin": "<%\\s*",
       "end": "\\s*%>",
       "patterns": [
         {
-          "name": "string.quoted.double.pocketframe",
-          "begin": "\"",
-          "end": "\""
+          "include": "source.php"
         },
         {
-          "name": "string.quoted.single.pocketframe",
-          "begin": "'",
-          "end": "'"
+          "name": "string.quoted.double.pocketframe",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [{"include": "source.php"}]
         }
       ]
     }
-  ]
+  ],
+  "repository": {
+    "commentContent": {
+      "patterns": [
+        {
+          "name": "keyword.important.comment.pocketframe",
+          "match": "TODO|FIXME|NOTE|BUG|HACK"
+        },
+        {
+          "name": "markup.underline.link.comment.pocketframe",
+          "match": "https?:\\/\\/[^\\s]+"
+        }
+      ]
+    }
+  }
 }

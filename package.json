@@ -21,6 +21,20 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+     "configuration": {
+        "comments": {
+          "lineComment": "<%--",
+          "blockComment": ["<#--", "--#>"]
+        },
+        "title": "Pocketframe",
+        "properties": {
+          "pocketframe.format.enable": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable/disable template formatting"
+          }
+        }
+      },
     "languages": [
       {
         "id": "pocketframe",
@@ -33,7 +47,11 @@
       {
         "language": "pocketframe",
         "scopeName": "source.pocketframe",
-        "path": "./syntaxes/pocketframe.tmLanguage.json"
+        "path": "./syntaxes/pocketframe.tmLanguage.json",
+        "embeddedLanguages": {
+          "text.html": "html",
+          "source.php": "php"
+        }
       }
     ],
     "snippets": [
@@ -82,5 +100,7 @@
     "@types/vscode": "^1.80.0",
     "typescript": "^4.9.0",
     "vscode": "^1.1.37"
-  }
+  },
+  "pocketframe.comments.autoClose": true,
+  "pocketframe.comments.whitespaceControl": true
 }
