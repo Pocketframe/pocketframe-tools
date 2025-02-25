@@ -1,0 +1,10 @@
+{
+  "iconDefinitions": {
+    "_pocketframe_icon": {
+      "iconPath": "./pocketframe-template-icon.svg"
+    }
+  },
+  "fileExtensions": {
+    "view.php": "_pocketframe_icon"
+  }
+}
