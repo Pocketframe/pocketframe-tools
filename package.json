@@ -3,19 +3,53 @@
   "displayName": "Pocketframe Tools",
   "description": "Provides syntax highlighting, code completion, go-to definition, snippets, and commands for the entire Pocketframe framework (including Pocketframe templating with .pxt.php files).",
   "version": "0.0.1",
+  "publisher": "WilliamAsaba",
   "engines": {
-    "vscode": "^1.97.0"
+    "vscode": "^1.80.0"
   },
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/Pocketframe/pocketframe-tools.git"
+},
+"bugs": {
+  "url": "https://github.com/Pocketframe/pocketframe-tools/issues"
+},
+"homepage": "https://github.com/Pocketframe/pocketframe-tools#readme",
   "categories": [
-    "Other"
+    "Other",
+    "Programming Languages"
   ],
-  "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
+    "languages": [
+      {
+        "id": "pocketframe",
+        "aliases": ["Pocketframe", "pxt"],
+        "extensions": [".pxt.php"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "pocketframe",
+        "scopeName": "source.pocketframe",
+        "path": "./syntaxes/pocketframe.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "pocketframe",
+        "path": "./snippets/pocketframe.code-snippets.json"
+      }
+    ],
     "commands": [
       {
-        "command": "pocketframe-tools.helloWorld",
-        "title": "Hello World"
+        "command": "pocketframeTools.showVersion",
+        "title": "Pocketframe Tools: Show Version"
+      },
+      {
+        "command": "pocketframeTools.serve",
+        "title": "Pocketframe Tools: Serve Framework"
       }
     ]
   },
@@ -23,19 +57,12 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src",
-    "test": "vscode-test"
+    "pretest": "npm run compile"
   },
   "devDependencies": {
-    "@types/vscode": "^1.97.0",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "20.x",
-    "@typescript-eslint/eslint-plugin": "^8.22.0",
-    "@typescript-eslint/parser": "^8.22.0",
-    "eslint": "^9.19.0",
-    "typescript": "^5.7.3",
-    "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^4.9.0",
+    "vscode": "^1.1.37"
   }
 }
