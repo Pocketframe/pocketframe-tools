@@ -1,0 +1,27 @@
+{
+  "scopeName": "source.pocketframe",
+  "name": "Pocketframe Template",
+  "patterns": [
+    {
+      "name": "keyword.control.pocketframe",
+      "match": "<%\\s*(if|else|endif|foreach|endforeach|block|endblock|extends|yield|method|csrf_token)\\b"
+    },
+    {
+      "name": "meta.template.pocketframe",
+      "begin": "<%[=!]?\\s*",
+      "end": "\\s*%>",
+      "patterns": [
+        {
+          "name": "string.quoted.double.pocketframe",
+          "begin": "\"",
+          "end": "\""
+        },
+        {
+          "name": "string.quoted.single.pocketframe",
+          "begin": "'",
+          "end": "'"
+        }
+      ]
+    }
+  ]
+}
