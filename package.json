@@ -2,51 +2,79 @@
   "name": "pocketframe-tools",
   "displayName": "Pocketframe Tools",
   "description": "Provides syntax highlighting, code completion, go-to definition, snippets, and commands for the entire Pocketframe framework (including Pocketframe templating with .view.php files).",
-  "version": "0.0.7",
+  "version": "0.1.1",
   "publisher": "WilliamAsaba",
   "engines": {
     "vscode": "^1.80.0"
   },
   "repository": {
-  "type": "git",
-  "url": "https://github.com/Pocketframe/pocketframe-tools.git"
-},
-"bugs": {
-  "url": "https://github.com/Pocketframe/pocketframe-tools/issues"
-},
-"homepage": "https://github.com/Pocketframe/pocketframe-tools#readme",
+    "type": "git",
+    "url": "https://github.com/Pocketframe/pocketframe-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Pocketframe/pocketframe-tools/issues"
+  },
+  "homepage": "https://github.com/Pocketframe/pocketframe-tools#readme",
   "categories": [
     "Programming Languages",
     "Linters"
   ],
   "main": "./out/extension.js",
   "contributes": {
-     "configuration": {
-        "comments": {
-          "lineComment": ["<%--", "--%>"],
-          "blockComment": ["<#--", "--#>"]
-        },
-        "title": "Pocketframe",
-        "properties": {
-          "pocketframe.format.enable": {
-            "type": "boolean",
-            "default": true,
-            "description": "Enable/disable template formatting"
-          },
-          "pocketframe.format.indentSize": {
-            "type": "number",
-            "default": 4,
-            "description": "Number of spaces for indentation"
-          }
-        }
+    "configuration": {
+      "comments": {
+        "lineComment": [
+          "<%--",
+          "--%>"
+        ],
+        "blockComment": [
+          "<#--",
+          "--#>"
+        ]
       },
+      "title": "Pocketframe",
+      "properties": {
+        "pocketframe.format.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable template formatting"
+        },
+        "pocketframe.format.indentSize": {
+          "type": "number",
+          "default": 4,
+          "description": "Number of spaces for indentation"
+        },
+        "pocketframe.definitions.searchDepth": {
+          "type": "number",
+          "default": 3,
+          "description": "Maximum directory depth for definition search"
+        },
+        "pocketframe.format.maxLineLength": {
+          "type": "number",
+          "default": 80,
+          "description": "Maximum line length before wrapping attributes"
+        },
+        "pocketframe.definitions.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable definition provider"
+        }
+      }
+    },
     "languages": [
       {
         "id": "pocketframe",
-        "aliases": ["Pocketframe", "Pocket"],
-        "extensions": [".view.php"],
+        "aliases": [
+          "Pocketframe",
+          "Pocket"
+        ],
+        "extensions": [
+          ".view.php"
+        ],
         "configuration": "./language-configuration.json",
-        "formatters": ["pocketframe"]
+        "formatters": [
+          "pocketframe"
+        ]
       }
     ],
     "grammars": [
@@ -67,19 +95,19 @@
       }
     ],
     "iconThemes": [
-    {
-      "id": "pocketframe-icons",
-      "label": "Pocketframe Icons",
-      "path": "./icons/pocketframe-icons.json"
-    }
-  ],
+      {
+        "id": "pocketframe-icons",
+        "label": "Pocketframe Icons",
+        "path": "./icons/pocketframe-icons.json"
+      }
+    ],
     "keybindings": [
       {
         "command": "pocketframe.gotoDefinition",
         "key": "ctrl+shift+g",
         "when": "editorLangId == 'pocketframe'"
       },
-       {
+      {
         "command": "pocketframe.formatDocument",
         "key": "shift+alt+f",
         "when": "editorLangId == pocketframe"
@@ -90,7 +118,7 @@
         "command": "pocketframeTools.showVersion",
         "title": "Pocketframe Tools: Show Version"
       },
-       {
+      {
         "command": "pocketframe.formatDocument",
         "title": "Format Pocketframe Document"
       },
@@ -111,7 +139,8 @@
     "pretest": "npm run compile"
   },
   "devDependencies": {
-    "@types/node": "^18.0.0",
+    "@types/mocha": "^10.0.6",
+     "@types/node": "^18.0.0",
     "@types/vscode": "^1.80.0",
     "typescript": "^4.9.0",
     "vscode": "^1.1.37",
