@@ -1,32 +1,119 @@
-# Pocketframe Tools
+# Pocketframe Tools for VS Code
 
-Pocketframe Tools is a Visual Studio Code extension that provides advanced language support for the entire Pocketframe framework. It offers:
+[![VS Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/WilliamAsaba.pocketframe-tools?color=blue&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=WilliamAsaba.pocketframe-tools)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Downloads](https://img.shields.io/visual-studio-marketplace/d/WilliamAsaba.pocketframe-tools?color=violet)](https://marketplace.visualstudio.com/items?itemName=WilliamAsaba.pocketframe-tools)
 
-- **Syntax Highlighting**: For Pocketframe templating files (`.view.php`) and framework-specific syntax.
-- **Code Completion & Snippets**: Fast insertion of common templating and helper function snippets.
-- **Go-To Definition**: Basic navigation support (customize as needed).
-- **Commands**: Framework-specific commands like "Serve" to run the development server.
-- **Integration with Pocketframe**: Enhanced support for helper functions like `route()`, `redirect()`, and `csrf_token()`.
+![Pocketframe Tools Banner](/images/banner.png)
 
-## Features
+## ⚡ Features
 
-- **File Extension**: Recognizes files ending with `.view.php`.
-- **Syntax Highlighting**: Custom TextMate grammar for Pocketframe templates.
-- **IntelliSense**: Provides auto-completion for control structures, helpers, and common snippets.
-- **Go-To Definition**: Navigate to definitions (basic implementation).
-- **Commands**: Run Pocketframe CLI commands directly from VS Code.
+| Feature                       | Description                                                         |
+| ----------------------------- | ------------------------------------------------------------------- |
+| 🎨 Syntax Highlighting         | Colorized templates, PHP blocks, and custom directives              |
+| 💡 Intelligent Code Completion | Context-aware suggestions for routes, blocks, and framework helpers |
+| 🚀 Snippets                    | `route`, `extends`, `yield`, `block`, `if` templates with tab stops            |
+| 🔗 Go to Definition            | Jump to route definitions and template blocks (Ctrl+Click/ alt+Click)          |
+| ✨ Formatting                  | Professional code formatting with customizable rules                |
+| ⚙️ Commands                    | Integrated server control and framework utilities                   |
 
-## Installation
+## 📦 Installation
 
-1. Clone the repository.
-2. Run `npm install` to install dependencies.
-3. Run `npm run compile` to compile the TypeScript code.
-4. Press `F5` in VS Code to launch an Extension Development Host and test the extension.
+### Visual Studio Code Marketplace
+[![Install Now](https://img.shields.io/badge/VS_Marketplace-Install_Now-blue?logo=visual-studio-code&style=for-the-badge)](https://marketplace.visualstudio.com/items?itemName=WilliamAsaba.pocketframe-tools)
 
-## Contributing
+1. Open **Extensions** view (`Ctrl+Shift+X`)
+2. Search for "Pocketframe Tools"
+3. Click **Install**
+4. Reload VS Code
 
-Contributions are welcome! Please open issues or pull requests.
+## 🛠️ Usage
 
-## License
+### Basic Template Example
+```html
+<%-- posts.view.php --%>
+<% extends "layouts/app" %>
 
-[MIT](LICENSE)
+<% block title %>
+  <%= $pageTitle %>
+<% endblock %>
+
+<% block content %>
+  <div class="container">
+    <% foreach ($posts as $post) %>
+      <article class="post">
+        <h2><%= $post->title %></h2>
+        <a href="<%= route('posts.edit', ['id' => $post->id]) %>">Edit</a>
+      </article>
+    <% endforeach %>
+  </div>
+<% endblock %>
+```
+
+## ⌨️ Keyboard Shortcuts
+
+| Command             | Shortcut       | Description                    |
+| ------------------- | -------------- | ------------------------------ |
+| Format Document     | `Shift+Alt+F`  | Reformat current file          |
+| Show Commands       | `Ctrl+Shift+P` | Access Pocketframe commands    |
+| Go to Definition    | `Ctrl+Click`   | Navigate to symbol definition  |
+| Trigger Suggestions | `Ctrl+Space`   | Show context-aware completions |
+
+## ⚙️ Configuration
+
+Add to your VS Code settings (settings.json):
+
+```json
+{
+  "pocketframe.format": {
+    "indentSize": 4,
+    "maxLineLength": 120,
+    "wrapAttributes": true
+  },
+  "pocketframe.analysis": {
+    "validateRoutes": true,
+    "checkCSRFTokens": true
+  }
+}
+```
+
+## 🚧 Development
+
+### Prerequisites
+- Node.js 16+
+- TypeScript 4.9+
+- VS Code Extension Development Tools
+
+### Build from Source
+```bash
+git clone https://github.com/Pocketframe/pocketframe-tools.git
+cd pocketframe-tools
+npm install
+npm run compile
+```
+
+### Test in Development Host
+
+- Press F5 to launch the extension debugger.
+- Open a `.view.php` file in the test workspace.
+- Test extension features.
+
+## 🤝 Contributing
+
+We welcome contributions! Follow these steps:
+
+1. Fork the repository
+2. Create a feature branch: git checkout -b feature/amazing-feature
+3. Commit changes: git commit -m 'Add amazing feature'
+4. Push to branch: git push origin feature/amazing-feature
+5. Open a Pull Request
+
+<!-- See our Contribution Guidelines for details. -->
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+Maintained with ❤️ by the Pocketframe Team.
+
+<!-- Documentation | Report Issue | Changelog -->
