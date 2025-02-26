@@ -6,46 +6,43 @@ export class PocketframeFormatter implements vscode.DocumentFormattingEditProvid
     const config = vscode.workspace.getConfiguration('pocketframe');
     const indentSize = config.get<number>('format.indentSize', 4);
     let indentLevel = 0;
-    let htmlIndentLevel = 0;
     const indentString = ' '.repeat(indentSize);
+    let inHtmlTag = false;
 
     for (let i = 0; i < document.lineCount; i++) {
       const line = document.lineAt(i);
       let text = line.text.trim();
+      let newText = '';
 
       // Handle Pocketframe control structures
-      if (text.startsWith('<%')) {
-        const isClosing = text.match(/<%-\s*(endif|endforeach|endblock|else|endmethod)/);
-        const isOpening = text.match(/<%-\s*(if|foreach|block|method)/);
+      const controlMatch = text.match(/<%\s*(\/?\w+)/);
+      if (controlMatch) {
+        const [_, directive] = controlMatch;
+        const isEndTag = directive.startsWith('end') || directive === 'else';
 
-        if (isClosing) {
-          indentLevel = Math.max(indentLevel - 1, 0);
-        }
+        if (isEndTag) indentLevel = Math.max(indentLevel - 1, 0);
 
-        // Apply indentation before control structure
-        const newText = indentString.repeat(indentLevel) + text;
-        edits.push(vscode.TextEdit.replace(line.range, newText));
+        newText = indentString.repeat(indentLevel) + text;
 
-        if (isOpening) {
+        if (!isEndTag && ['if', 'foreach', 'block'].includes(directive)) {
           indentLevel++;
         }
-      } else {
-        // Handle HTML indentation
-        const htmlClose = text.match(/<\/\w+/);
-        const htmlOpen = text.match(/<\w+(?![^>]*\/>)/);
+      }
+      // Handle HTML content
+      else {
+        const htmlOpen = text.match(/<([a-zA-Z]+)(?![^>]*\/>)/);
+        const htmlClose = text.match(/<\/([a-zA-Z]+)/);
 
-        if (htmlClose) {
-          htmlIndentLevel = Math.max(htmlIndentLevel - 1, 0);
-        }
+        if (htmlClose) indentLevel = Math.max(indentLevel - 1, 0);
 
-        const totalIndent = indentLevel + htmlIndentLevel;
-        const formattedLine = indentString.repeat(totalIndent) + text;
-        edits.push(vscode.TextEdit.replace(line.range, formattedLine));
+        newText = indentString.repeat(indentLevel) + text;
 
         if (htmlOpen && !text.endsWith('/>')) {
-          htmlIndentLevel++;
+          indentLevel++;
         }
       }
+
+      edits.push(vscode.TextEdit.replace(line.range, newText));
     }
 
     return edits;
@@ -56,9 +53,12 @@ export class PocketframeFormatter implements vscode.DocumentFormattingEditProvid
     options: vscode.FormattingOptions,
     token: vscode.CancellationToken
   ): vscode.TextEdit[] {
-    if (!vscode.workspace.getConfiguration('pocketframe').get('format.enable', true)) {
+    try {
+      if (token.isCancellationRequested) return [];
+      return this.formatDocument(document);
+    } catch (error) {
+      vscode.window.showErrorMessage(`Formatting failed: ${error}`);
       return [];
     }
-    return this.formatDocument(document);
   }
 }
