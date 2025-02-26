@@ -2,7 +2,7 @@
 
 [![VS Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/WilliamAsaba.pocketframe-tools?color=blue&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=WilliamAsaba.pocketframe-tools)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Downloads](https://img.shields.io/visual-studio-marketplace/d/WilliamAsaba.pocketframe-tools?color=violet)](https://marketplace.visualstudio.com/items?itemName=WilliamAsaba.pocketframe-tools)
+[![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/d/WilliamAsaba.pocketframe-tools?color=orange&label=installs&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=WilliamAsaba.pocketframe-tools)
 
 ![Pocketframe Tools Banner](/images/banner.png)
 
