@@ -2,7 +2,7 @@
   "name": "pocketframe-tools",
   "displayName": "Pocketframe Tools",
   "description": "Provides syntax highlighting, code completion, go-to definition, snippets, and commands for the entire Pocketframe framework (including Pocketframe templating with .view.php files).",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "publisher": "WilliamAsaba",
   "engines": {
     "vscode": "^1.80.0"
@@ -23,7 +23,7 @@
   "contributes": {
      "configuration": {
         "comments": {
-          "lineComment": "<%--",
+          "lineComment": ["<%--", "--%>"],
           "blockComment": ["<#--", "--#>"]
         },
         "title": "Pocketframe",
@@ -115,7 +115,7 @@
     "@types/vscode": "^1.80.0",
     "typescript": "^4.9.0",
     "vscode": "^1.1.37",
-    "prettier": "^3.0.0"
+    "vscode-languageclient": "^8.1.0"
   },
   "pocketframe.comments.autoClose": true,
   "pocketframe.comments.whitespaceControl": true
