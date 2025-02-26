@@ -6,8 +6,9 @@
       "include": "text.html.basic"
     },
     {
-      "name": "comment.line.pocketframe",
-      "match": "<%--.*",
+      "name": "comment.block.pocketframe",
+      "begin": "<%--",
+      "end": "--%>",
       "patterns": [
         {
           "name": "keyword.important.comment.pocketframe",
