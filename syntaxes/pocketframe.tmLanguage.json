@@ -6,15 +6,16 @@
       "include": "text.html.basic"
     },
     {
+      "name": "comment.line.pocketframe",
+      "match": "<%--.*?--%>"
+    },
+    {
       "name": "comment.block.pocketframe",
-      "begin": "<%--",
-      "end": "--%>",
-      "patterns": [
-        {
-          "name": "keyword.important.comment.pocketframe",
-          "match": "TODO|FIXME|NOTE|BUG|HACK"
-        }
-      ]
+      "begin": "<#--",
+      "end": "--#>",
+      "captures": {
+        "include": "#commentContent"
+      }
     },
     {
       "name": "keyword.control.pocketframe",
