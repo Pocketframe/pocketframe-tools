@@ -2,7 +2,7 @@
   "name": "pocketframe-tools",
   "displayName": "Pocketframe Tools",
   "description": "Provides syntax highlighting, code completion, go-to definition, snippets, and commands for the entire Pocketframe framework (including Pocketframe templating with .view.php files).",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "publisher": "WilliamAsaba",
   "engines": {
     "vscode": "^1.80.0"
@@ -32,6 +32,11 @@
             "type": "boolean",
             "default": true,
             "description": "Enable/disable template formatting"
+          },
+          "pocketframe.format.indentSize": {
+            "type": "number",
+            "default": 4,
+            "description": "Number of spaces for indentation"
           }
         }
       },
@@ -40,7 +45,8 @@
         "id": "pocketframe",
         "aliases": ["Pocketframe", "Pocket"],
         "extensions": [".view.php"],
-        "configuration": "./language-configuration.json"
+        "configuration": "./language-configuration.json",
+        "formatters": ["pocketframe"]
       }
     ],
     "grammars": [
@@ -72,12 +78,21 @@
         "command": "pocketframe.gotoDefinition",
         "key": "ctrl+shift+g",
         "when": "editorLangId == 'pocketframe'"
+      },
+       {
+        "command": "pocketframe.formatDocument",
+        "key": "shift+alt+f",
+        "when": "editorLangId == pocketframe"
       }
     ],
     "commands": [
       {
         "command": "pocketframeTools.showVersion",
         "title": "Pocketframe Tools: Show Version"
+      },
+       {
+        "command": "pocketframe.formatDocument",
+        "title": "Format Pocketframe Document"
       },
       {
         "command": "pocketframeTools.serve",
@@ -99,7 +114,8 @@
     "@types/node": "^18.0.0",
     "@types/vscode": "^1.80.0",
     "typescript": "^4.9.0",
-    "vscode": "^1.1.37"
+    "vscode": "^1.1.37",
+    "prettier": "^3.0.0"
   },
   "pocketframe.comments.autoClose": true,
   "pocketframe.comments.whitespaceControl": true
