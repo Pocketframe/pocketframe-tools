@@ -3,26 +3,48 @@ import * as vscode from 'vscode';
 export class PocketframeFormatter implements vscode.DocumentFormattingEditProvider {
   private formatDocument(document: vscode.TextDocument): vscode.TextEdit[] {
     const edits: vscode.TextEdit[] = [];
-    const indentSize = vscode.workspace.getConfiguration('pocketframe').get<number>('format.indentSize', 4);
+    const config = vscode.workspace.getConfiguration('pocketframe');
+    const indentSize = config.get<number>('format.indentSize', 4);
     let indentLevel = 0;
+    let htmlIndentLevel = 0;
     const indentString = ' '.repeat(indentSize);
 
     for (let i = 0; i < document.lineCount; i++) {
       const line = document.lineAt(i);
-      let text = line.text;
+      let text = line.text.trim();
 
-      // Handle closing tags indentation
-      if (text.match(/<%-\s*(endif|endforeach|endblock|else|endmethod)\s*%>/)) {
-        indentLevel = Math.max(indentLevel - 1, 0);
-      }
+      // Handle Pocketframe control structures
+      if (text.startsWith('<%')) {
+        const isClosing = text.match(/<%-\s*(endif|endforeach|endblock|else|endmethod)/);
+        const isOpening = text.match(/<%-\s*(if|foreach|block|method)/);
 
-      // Apply current indentation
-      const newText = indentString.repeat(indentLevel) + text.trimStart();
-      edits.push(vscode.TextEdit.replace(line.range, newText));
+        if (isClosing) {
+          indentLevel = Math.max(indentLevel - 1, 0);
+        }
 
-      // Handle opening tags indentation
-      if (text.match(/<%-\s*(if|foreach|block|method)\s*%>/)) {
-        indentLevel++;
+        // Apply indentation before control structure
+        const newText = indentString.repeat(indentLevel) + text;
+        edits.push(vscode.TextEdit.replace(line.range, newText));
+
+        if (isOpening) {
+          indentLevel++;
+        }
+      } else {
+        // Handle HTML indentation
+        const htmlClose = text.match(/<\/\w+/);
+        const htmlOpen = text.match(/<\w+(?![^>]*\/>)/);
+
+        if (htmlClose) {
+          htmlIndentLevel = Math.max(htmlIndentLevel - 1, 0);
+        }
+
+        const totalIndent = indentLevel + htmlIndentLevel;
+        const formattedLine = indentString.repeat(totalIndent) + text;
+        edits.push(vscode.TextEdit.replace(line.range, formattedLine));
+
+        if (htmlOpen && !text.endsWith('/>')) {
+          htmlIndentLevel++;
+        }
       }
     }
 
