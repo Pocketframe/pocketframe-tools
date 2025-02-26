@@ -7,22 +7,11 @@
     },
     {
       "name": "comment.line.pocketframe",
-      "begin": "<%--",
-      "end": "--%>",
+      "match": "<%--.*",
       "patterns": [
         {
           "name": "keyword.important.comment.pocketframe",
           "match": "TODO|FIXME|NOTE|BUG|HACK"
-        }
-      ]
-    },
-    {
-      "name": "comment.block.pocketframe",
-      "begin": "<#\\--",
-      "end": "\\--#>",
-      "patterns": [
-        {
-          "include": "#commentContent"
         }
       ]
     },
