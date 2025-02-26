@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { exec } from 'child_process';
+import { PocketframeFormatter } from './formatter';
 
 export function activate(context: vscode.ExtensionContext) {
   // Register a completion provider for Pocketframe files (.view.php)
@@ -58,6 +59,11 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.window.showInformationMessage('Pocketframe Tools extension version 0.0.1');
   });
   context.subscriptions.push(showVersionCmd);
+
+const formatter = new PocketframeFormatter();
+  context.subscriptions.push(
+    vscode.languages.registerDocumentFormattingEditProvider('pocketframe', formatter)
+  );
 
   // Register command: Serve the Framework
   // This command will run "php -S localhost:8000 -t public index.php" assuming your framework CLI supports it.
