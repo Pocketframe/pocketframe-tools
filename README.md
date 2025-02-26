@@ -12,7 +12,7 @@
 | ----------------------------- | ------------------------------------------------------------------- |
 | 🎨 Syntax Highlighting         | Colorized templates, PHP blocks, and custom directives              |
 | 💡 Intelligent Code Completion | Context-aware suggestions for routes, blocks, and framework helpers |
-| 🚀 Snippets                    | `route`, `extends`, `yield`, `block`, `if` templates with tab stops            |
+| 🚀 Snippets                    | `route`, `extends`, `yield`, `block`, `if`, `foreach` templates with tab stops            |
 | 🔗 Go to Definition            | Jump to route definitions and template blocks (Ctrl+Click/ alt+Click)          |
 | ✨ Formatting                  | Professional code formatting with customizable rules                |
 | ⚙️ Commands                    | Integrated server control and framework utilities                   |
@@ -76,6 +76,14 @@ Add to your VS Code settings (settings.json):
   }
 }
 ```
+### 🧩 Extension Settings
+
+| Setting                               | Default | Description                           |
+| ------------------------------------- | ------- | ------------------------------------- |
+| `pocketframe.format.indentSize`       | 4       | Spaces per indentation level          |
+| `pocketframe.format.wrapAttributes`   | true    | Wrap long HTML attributes             |
+| `pocketframe.analysis.validateRoutes` | true    | Verify route existence                |
+| `pocketframe.server.autoStart`        | false   | Auto-start dev server on project open |
 
 ## 🚧 Development
 
