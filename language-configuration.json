@@ -1,6 +1,13 @@
 {
   "comments": {
-    "lineComment": "<%--"
+  "lineComment": [
+      "<%--",
+      "--%>"
+    ],
+    "blockComment": [
+      "<#--",
+      "--#>"
+    ]
   },
   "brackets": [
     ["{", "}"],
@@ -15,7 +22,7 @@
     {"open": "\"", "close": "\""},
     {"open": "'", "close": "'"},
     {"open": "<%", "close": "%>"},
-    {"open": "<%--", "close": "", "notIn": ["string"]}
+    {"open": "<%--", "close": "--%>"}
   ],
   "surroundingPairs": [
     {"open": "{", "close": "}"},
@@ -23,7 +30,8 @@
     {"open": "(", "close": ")"},
     {"open": "\"", "close": "\""},
     {"open": "'", "close": "'"},
-    {"open": "<%", "close": "%>"}
+    {"open": "<%", "close": "%>"},
+    {"open": "<%--", "close": "--%>"}
   ],
   "indentationRules": {
     "increaseIndentPattern": "<%\\s*(block|if|foreach|else|method)",
