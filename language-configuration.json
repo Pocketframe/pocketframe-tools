@@ -1,7 +1,6 @@
 {
   "comments": {
-    "lineComment": "<%--",
-    "blockComment": ["<%--", "--%>"]
+    "lineComment": "<%--"
   },
   "brackets": [
     ["{", "}"],
@@ -15,7 +14,8 @@
     {"open": "(", "close": ")"},
     {"open": "\"", "close": "\""},
     {"open": "'", "close": "'"},
-    {"open": "<%", "close": "%>"}
+    {"open": "<%", "close": "%>"},
+    {"open": "<%--", "close": "", "notIn": ["string"]}
   ],
   "surroundingPairs": [
     {"open": "{", "close": "}"},
